@@ -1,11 +1,10 @@
 [
     {
+        "mdId":"981492370W",
         "fin":"G4941042Q",
-        "name":"Raj Ganesh",
         "clinicId":"238026777Y",
-        "status":"Not fit for work",
         "mcStartDate": "11/5/2022",
         "mcEndDate": "13/5/2022",
-        "invoiceId": "I20224433"
+        "status":"Not fit for work"
     }
 ]

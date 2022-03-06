@@ -1,9 +1,7 @@
 [
     {
+        "employeeId":"8759449",
         "fin":"G4941042Q",
-        "name":"Raj Ganesh",
-        "address":"750A Chai Chee Road #07-02, Singapore 469001",
-        "dateOfBirth":"04/03/1977",
         "companyUen": "20224343W",
         "isWorkingToday": "false",
         "sickLeaveClaimed": "2",
