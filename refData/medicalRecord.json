@@ -1,10 +1,14 @@
 [
     {
+        "regNo":"",
+        "clinicId":"238026777Y",
         "fin":"G4941042Q",
-        "name":"Raj Ganesh",
-        "address":"750A Chai Chee Road #07-02, Singapore 469001",
-        "dateOfBirth":"04/03/1977",
-        "pastMedicalHistory": "Hypertension, Hyperlipidemia, High Cholesterol",
-        "lastDateOfVisit": "11/3/2022"
+        "issueMC":"true",
+        "mdId":"981492370W",
+        "medicalHistory": "Hypertension, Hyperlipidemia, High Cholesterol",
+        "currentDiagnosis":"Upper respiratory tract infection",
+        "visitHistory": "11/3/2022",
+        "nextOfKinName": "Ong Zhuang Kwan",
+        "nextOfKinCOntact": "94347777"
     }
 ]
