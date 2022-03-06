@@ -1,4 +1,4 @@
-const { DataTypes, Model } = require("sequelize");
+const { DataTypes, Model, Sequelize } = require("sequelize");
 const {sequelize} = require('./setup');
 const EmployeeRecord = require("./empRecord.model");
 
@@ -27,10 +27,12 @@ Person.init(
     createdAt: {
       type: DataTypes.DATE,
       field: "created_at",
+      defaultValue: Sequelize.fn('NOW'),
     },
     updatedAt: {
       type: DataTypes.DATE,
       field: "updated_at",
+      defaultValue: Sequelize.fn('NOW'),
     },
   },
   {
