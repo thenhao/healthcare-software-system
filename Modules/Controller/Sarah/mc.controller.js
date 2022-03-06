@@ -25,10 +25,10 @@ class McController {
             req.body.mcEndDate, 
             req.body.status
         )
-        res.status(mc.status)
+        res.status(result.status)
 
         //Return mc from service
-        return res.json({data:mc.data})
+        return res.json({data:result.data})
 
     }
 }
