@@ -2,13 +2,11 @@
 const express = require('express');
 const router = express.Router();
 
+//Import controller
 const McController = require('../Controllers/Sarah/mc.controller');
-const mcController = new McController;
+const mcController = new McController();
 
-//const McService = require('../Services/Sarah/mc.service');
-
-router.post('/mc', mcController.createMc);
+//Invoke create in McController based on route
+router.post('/mc', mcController.create);
 
 module.exports = router;
-
-//return res.redirect('/mc');

@@ -1,31 +1,25 @@
 //As a Clinic Assistant, I am able to create a MC for the person by using his FIN
-const Model = require('../Models');
-//const fs = require('fs');
-//const util = require('util');
+const {Mc} = require('../Models');
 
-//const readFile = util.promisify(fs.readFile);
-//const writeFile = util.promisify(fs.writeFile);
+module.exports = {
+    //Create function inside object
+    create: async(mcId) => {
+        //Create mc object
+        let mc = {
+            mcId: null, 
+            fin: "", 
+            clinicId: null, 
+            mcStartDate: "", 
+            mcEndDate: "", 
+            status: ""
+        };
 
-class McService {
-    async createMc(newMc) {
-        try {
-            return await db.Mc.create(newMc);
-        } catch(error) {
-            throw error;
-        }
+    await mc.save();
+    mc.data = mc;
+    mc.status = 200;
+    mc.message = "MC created successfully";
+
+    return mc;
     }
 }
-
 module.exports = McService;
-
-/*
-constructor(datafile) {
-        this.datafile = datafile;
-    }
-
-    async create(mcId, fin, clinicId, mcStartDate, mcEndDate, status) {
-        const data = (await this.getData()) || [];
-        data.unshift({mcId, fin, clinicId, mcStartDate, mcEndDate, status});
-        return writeFile(this.datafile, JSON.stringify(data));
-    }
-*/

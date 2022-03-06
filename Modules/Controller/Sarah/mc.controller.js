@@ -1,37 +1,36 @@
 //As a Clinic Assistant, I am able to create a MC for the person by using his FIN
+//Import McService
 const mcService = require('../Services/Sarah/mc.service');
-const db = require('../ORM/mc');
 
+//For post/mc/create request
 class McController {
-    constructor() {
-        try {
-            const createMc = await Mc.create({
-                mcId:req.body.mcId, 
-                fin:req.body.fin, 
-                clinicId:req.body.clinicId, 
-                mcStartDate:req.body.mcStartDate, 
-                mcEndDate:req.body.mcEndDate, 
-                status:req.body.status,
-                createdAt: req.body.createdAt,
-                updatedAt: req.body.updatedAt
-            });
-            return res.status(201).send(createMc);
-        } catch(error) {
-            res.status(500).json("Unable to create MC");
-        }
+    async create(req, res, next) {
+        //Validation
+        if (typeof req.body.mcId !== "number" ||
+            typeof req.body.fin !== "string" ||
+            typeof req.body.clinicId !== "number" ||
+            typeof req.body.mcStartDate !== "date" ||
+            typeof req.body.mcEndDate !== "date" ||
+            typeof req.body.status !== "string") 
+            {
+                res.status(400).json({message: "Incorrect request data format"})
+            }
+
+        //Use service layer
+        const mc = await mcService.create(
+            req.body.mcId, 
+            req.body.fin, 
+            req.body.clinicId, 
+            req.body.mcStartDate, 
+            req.body.mcEndDate, 
+            req.body.status
+        )
+        res.status(mc.status)
+
+        //Return mc from service
+        return res.json({data:mc.data})
+
     }
 }
 
 module.exports = McController;
-
-/*
-router.post('/', async(req, res) => {
-    try {
-        const newMc = new Mc(req.body)
-        await newMc.save();
-        res.json({Mc: newMc})
-    } catch(error) {
-        console.error(error);
-    }
-}
-*/
