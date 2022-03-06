@@ -70,6 +70,15 @@ MedicalRecord.init({
         sequelize, 
         modelName:"MedicalRecord",
         tableName:"MedicalRecord"
-    })
+    });
 
-    module.exports= MedicalRecord;
+//foreign key declare here
+//remember to import in the neccessary models too
+//example of foreign key linking
+// Parkinghistories.belongsTo(Vehicle,{
+//     foreignKey:"vehicle_id"
+// });
+
+MedicalRecord.sync();
+
+module.exports= MedicalRecord;
