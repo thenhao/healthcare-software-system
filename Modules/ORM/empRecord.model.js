@@ -1,6 +1,7 @@
 const { DataTypes, Model } = require("sequelize");
 const {sequelize} = require('./setup');
 const Company = require('./company.model');
+const Person = require("./person.model");
 
 class EmployeeRecord extends Model {}
 
@@ -8,12 +9,13 @@ EmployeeRecord.init(
   {
     employeeID: {
       type: DataTypes.INTEGER,
+      primaryKey: true,
       allowNull: false,
-      field: 'employee_ID'
+      field: 'employee_ID',
+      autoIncrement:true
     },
     FIN: {
       type: DataTypes.STRING,
-      primaryKey: true,
       allowNull: false,
     },
     companyUEN: {
@@ -56,6 +58,13 @@ EmployeeRecord.belongsTo(
   Company,
   {
     foreignKey: 'companyUEN'
+  }
+);
+
+EmployeeRecord.belongsTo(
+  Person,
+  {
+    foreignKey: 'FIN'
   }
 );
 

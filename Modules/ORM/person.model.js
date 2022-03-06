@@ -40,11 +40,11 @@ Person.init(
   }
 );
 
-Person.belongsTo(
-  EmployeeRecord,
-  {
-    foreignKey: 'FIN'
-  }
-)
+// Person.belongsTo(
+//   EmployeeRecord,
+//   {
+//     foreignKey: 'FIN'
+//   }
+//)
 
 module.exports = Person;
