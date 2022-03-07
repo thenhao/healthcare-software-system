@@ -16,28 +16,36 @@ module.exports = {
             data: null
         }
 
-        //Look for the vehicle and driver in the database
-        const employeeRecord = await EmployeeRecord.findByPk(employeeId);
-        const person = await Person.findByPk(employeeRecord.FIN);
-        const mc = await MC.findAll({where:{FIN:person.FIN}});
-
         //What we want:
         //1. check if employee record and person exists
-        //2. If yes, proceed with finding mc
-        //3. If no, return error message.
+        //1a. check if employee exists
+        //2. If yes, proceed with person
+        //2a. check if person exists
+        //3. If yes, proceed with finding mc
+        //3a. check if mc exists
+        //4. If no, return error message.
         
-        //check if employee, person and mc exists
+        
+        const employeeRecord = await EmployeeRecord.findByPk(employeeId);
+        
+        
+
+        
         if(!employeeRecord){
             result.message = `Employee ID ${employeeId} is not found`;
             result.status = 404;
             return result;
         }
 
+        const person = await Person.findByPk(employeeRecord.FIN);
+
         if(!person){
             result.message = `No such person with FIN ${employeeRecord.FIN} found`;
             result.status = 404;
             return result;
         }
+
+        const mc = await MC.findAll({where:{FIN:person.FIN}});
 
         if(!mc){
             result.message = `No MC for ${employeeRecord.FIN} found`;

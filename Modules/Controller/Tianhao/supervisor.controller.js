@@ -16,7 +16,7 @@ class SupervisorController{
 
     async findSpecificEmployee(req, res, next){
         console.log(typeof req.params.employeeID);
-        if(typeof req.params.employeeID !== "number"){
+        if(typeof parseInt(req.params.employeeID) !== "number"){
             res.status(400);
             return res.json({message:"Incorrect request data"})
         }
