@@ -1,7 +1,9 @@
 const express = require('express');
-const UpdateMedRecordController = require('../../Controller/Regina/test');
 const router = express.Router();
 
-router.put('/updateMedRecord');
+const UpdateMedRecordController = require('../../Controller/Regina/clinicUpdateRecord.controller');
+const updateMedRecordController = new UpdateMedRecordController();
+
+router.put('/updateMedRecord', updateMedRecordController.updateRecord);
 
 module.exports = router;
