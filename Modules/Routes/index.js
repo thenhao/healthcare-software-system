@@ -38,9 +38,9 @@ app.use(express.json());
 
 //Tianhao
 //*******************routes import**********************
-//***place here****
+const supervisorViewMC = require("./Tianhao/supervisor.viewmc.routes");
 //*******************routes use**********************
-//***place here****
+app.use(supervisorViewMC);
 
 
 module.exports = app;
