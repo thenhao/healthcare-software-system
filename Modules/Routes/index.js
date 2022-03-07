@@ -42,4 +42,20 @@ app.use(express.json());
 //*******************routes use**********************
 //***place here****
 
+
 module.exports = app;
+
+//--------------------end of index.js-----------------------
+
+
+
+
+//previous code ---to be deleted if all okay-----
+// const express = require('express');
+// const { append } = require('express/lib/response');
+// const router = express.Router();
+
+// append.use(express.json());
+
+// module.exports = router;
+
