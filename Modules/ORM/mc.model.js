@@ -7,7 +7,7 @@ class MC extends Model {}
 
 MC.init(
   {
-    mcID: {
+    mcId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,

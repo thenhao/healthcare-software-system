@@ -1,10 +1,9 @@
 [
     {
-        "mcId":"1",
         "fin":"G4941042Q",
-        "clinicId":"238026777Y",
-        "mcStartDate": "11/5/2022",
-        "mcEndDate": "13/5/2022",
+        "clinicID": 1,
+        "mcStartDate": "2022-11-03T08:00:00.000Z",
+        "mcEndDate": "2022-13-03T08:00:00.000Z",
         "status":"Not fit for work"
     }
 ]
