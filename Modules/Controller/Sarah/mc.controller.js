@@ -1,30 +1,30 @@
 //As a Clinic Assistant, I am able to create a MC for the person by using his FIN
-//Connect to database
-const db = require('../ORM/mc.model');
-const MC = db.ORM.mc.model;
 
 //Import McService
-const mcService = require('../Services/Sarah/mc.service');
+const mcService = require('../../Services/Sarah/mc.service.js');
 
-
-//For post/mc/create request
+//For post request
 class McController {
-    async create(req, res) {
+    async createMC(req, res) {
         
         const {mcID, fin, clinicID, mcStartDate, mcEndDate, status} = req.body;
         if (!mcID || !fin || !clinicID || !mcStartDate || !mcEndDate || !status) {
-            return res.status(400).send({{message: "Incorrect request data"})
+            return res.status(400).send({message: "Incorrect request data"})
         }
 
         try {
-            let newMC = await MC.create({
-                mcID, fin, clinicID, mcStartDate, mcEndDate, status
+            let newMC = await mcService.createMC({
+                mcID, 
+                fin, 
+                clinicID, 
+                mcStartDate, 
+                mcEndDate, 
+                status
             });
-            return res.send(newMC);
+            return res.json({data:newMC.data, status: newMC.status, message:newMC.message});
         } catch(error) {
             res.status(500).send({message: "An error has occurred."})
         }
-
     }
 }
 
@@ -41,33 +41,4 @@ module.exports = McController;
             {
                 res.status(400).json({message: "Incorrect request data"})
             }
-
-
-const mc = await mcService.create(
-    req.body.mcID, 
-    req.body.fin, 
-    req.body.clinicID, 
-    req.body.mcStartDate, 
-    req.body.mcEndDate, 
-    req.body.status
-)
-res.status(result.status)
-
-//Return mc from service
-return res.json({data:result.data})
-
-module.exports = {
-    create(req, res) {
-        return MC.create({
-            mcID : req.body.mcID, 
-            fin : req.body.fin, 
-            clinicID : req.body.clinicID, 
-            mcStartDate : req.body.mcStartDate, 
-            mcEndDate : req.body.mcEndDate, 
-            status : req.body.status
-        })
-        .then((MC) => res.status(201).send(MC))
-        .catch((error) => res.status(400).send(error))
-    }
-}
 */
