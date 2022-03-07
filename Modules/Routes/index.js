@@ -26,7 +26,7 @@ app.use(express.json());
 
 //Sarah
 //*******************routes import**********************
-const createMC = require('./Sarah/mc.routes');
+const createMC = require('../Routes/Sarah/mc.route');
 //*******************routes use**********************
 app.use(createMC);
 

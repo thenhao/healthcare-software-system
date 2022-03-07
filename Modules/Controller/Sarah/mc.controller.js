@@ -7,38 +7,28 @@ const mcService = require('../../Services/Sarah/mc.service.js');
 class McController {
     async createMC(req, res) {
         
-        const {mcID, fin, clinicID, mcStartDate, mcEndDate, status} = req.body;
-        if (!mcID || !fin || !clinicID || !mcStartDate || !mcEndDate || !status) {
-            return res.status(400).send({message: "Incorrect request data"})
+        const {fin, clinicID, mcStartDate, mcEndDate, status} = req.body;
+        
+        if(typeof fin !== "string" || 
+            typeof clinicID !== "number" || 
+            typeof mcStartDate !== "string" || 
+            typeof mcEndDate !== "string" || 
+            typeof status !== "string"
+        )
+        {
+             res.status(400);
+             return res.json({message: "Incorrect request data"})
         }
-
+        
         try {
-            let newMC = await mcService.createMC({
-                mcID, 
-                fin, 
-                clinicID, 
-                mcStartDate, 
-                mcEndDate, 
-                status
-            });
-            return res.json({data:newMC.data, status: newMC.status, message:newMC.message});
+            const result = await mcService.createMC(fin, clinicID, mcStartDate, mcEndDate, status);
+            res.status(result.status);
+            return res.json({data:result.data, status: result.status, message:result.message});
         } catch(error) {
+            console.log(error.message);
             res.status(500).send({message: "An error has occurred."})
         }
     }
 }
 
 module.exports = McController;
-
-/*
-//Validation
-        if (typeof req.body.mcID !== "number" ||
-            typeof req.body.fin !== "string" ||
-            typeof req.body.clinicID !== "number" ||
-            typeof req.body.mcStartDate !== "date" ||
-            typeof req.body.mcEndDate !== "date" ||
-            typeof req.body.status !== "string") 
-            {
-                res.status(400).json({message: "Incorrect request data"})
-            }
-*/

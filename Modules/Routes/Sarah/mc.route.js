@@ -3,10 +3,10 @@ const express = require('express');
 const router = express.Router();
 
 //Import controller
-const McController = require('../Controllers/Sarah/mc.controller');
+const McController = require('../../Controller/Sarah/mc.controller.js');
 const mcController = new McController();
 
 //Invoke create in McController based on route
-router.post('/createMC', mcController.create);
+router.post('/createMC', mcController.createMC);
 
 module.exports = router;

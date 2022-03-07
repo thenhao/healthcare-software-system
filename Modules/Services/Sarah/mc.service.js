@@ -1,42 +1,58 @@
 //As a Clinic Assistant, I am able to create a MC for the person by using his FIN
+//As a Clinic Assistant, I am able to create a MC for the person by using his FIN
 const Person = require("../../ORM/person.model.js");
-const MedicalRecord = require("../../ORM/clinic.model.js");
+const MC = require("../../ORM/mc.model.js");
+const Clinic = require("../../ORM/clinic.model.js");
 
 module.exports = {
     //Create function inside object
-    createMC: async() => {
-        //Create mc object
+    createMC: async(fin, clinicID, mcStartDate, mcEndDate, status) => {
+        
         let result = {
             message:null,
             status: null,
             data: null
         }
     
-        const medicalRecord = await MedicalRecord.findByPk(medicalRecord.regNo);
+        const person = await Person.findByPk(fin);
         
-        if(!medicalRecord){
-            result.message = `Medical record with registration number ${medicalRecord.regNo} was not found.`;
+        if(!person){
+            result.message = `Person with fin ${fin} was not found.`;
             result.status = 404;
             return result;
         }
 
-        const person = await Person.findByPk(medicalRecord.FIN);
+        const clinic = await Clinic.findByPk(clinicID);
 
-        if(!person){
-            result.message = `Person with FIN ${medicalRecord.FIN} found`;
+        if(!clinic){
+            result.message = `Clinic with id ${clinicID} not found`;
             result.status = 404;
             return result;
         }
     
-        const MC = await MC.create({
-            mcID : req.body.mcID, 
-            fin : req.body.fin, 
-            clinicID : req.body.clinicID, 
-            mcStartDate : req.body.mcStartDate, 
-            mcEndDate : req.body.mcEndDate, 
-            status : req.body.status
-        })
-        .then((MC) => res.status(201).json(MC))
-        .catch((error) => res.status(400).send(error))
+        try{
+            //Create mc object
+            const Mc = await MC.create({ 
+                FIN : fin, 
+                clinicID : clinicID, 
+                mcStartDate : mcStartDate, 
+                mcEndDate : mcEndDate, 
+                status : status
+            });
+    
+            await Mc.save();
+            console.log('MC is saved to the database');
+            result.data = Mc;
+            result.status = 200;
+            result.message = "Mc creation successful";
+            return result;
+
+        } catch(error) {
+            result.message = `MC creation unsuccessful`;
+            result.status = 500;
+            return result;
+        }
+        
+        
     }
 }
