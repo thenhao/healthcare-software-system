@@ -4,7 +4,7 @@ class UpdateMedRecordController {
 
   async updateRecord(req, res, next){
 
-    
+
   }
 }
 
