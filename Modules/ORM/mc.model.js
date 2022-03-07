@@ -3,9 +3,9 @@ const {sequelize} = require('./setup');
 const Clinic = require('./clinic.model');
 const Person = require('./person.model');
 
-class Mc extends Model {}
+class MC extends Model {}
 
-Mc.init(
+MC.init(
   {
     mcId: {
       type: DataTypes.INTEGER,
@@ -55,18 +55,18 @@ Mc.init(
   }
 );
 
-Mc.belongsTo(
+MC.belongsTo(
   Clinic,
   {
     foreignKey: 'clinicID'
   }
 );
 
-Mc.belongsTo(
+MC.belongsTo(
   Person,
   {
     foreignKey: 'FIN'
   }
 );
 
-module.exports = Mc;
+module.exports = MC;

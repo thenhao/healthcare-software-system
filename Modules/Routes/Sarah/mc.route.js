@@ -7,6 +7,6 @@ const McController = require('../Controllers/Sarah/mc.controller');
 const mcController = new McController();
 
 //Invoke create in McController based on route
-router.post('/mc', mcController.create);
+router.post('/createMC', mcController.create);
 
 module.exports = router;

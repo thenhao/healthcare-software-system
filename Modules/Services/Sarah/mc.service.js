@@ -1,5 +1,5 @@
 //As a Clinic Assistant, I am able to create a MC for the person by using his FIN
-const {Mc} = require('../ORM');
+const {MC} = require('../ORM');
 
 module.exports = {
     //Create function inside object
@@ -13,14 +13,14 @@ module.exports = {
             mcEndDate: null, 
             status: null
         };
-    const mc = await Mc.findbyPk(mcId);
+    const MC = await MC.findbyPk(mcId);
 
-    await mc.save();
-    mc.data = mc;
-    mc.status = 200;
-    mc.message = "MC created successfully";
+    await MC.save();
+    MC.data = MC;
+    MC.status = 200;
+    MC.message = "MC created successfully";
 
-    return mc;
+    return MC;
     }
 }
 module.exports = McService;
