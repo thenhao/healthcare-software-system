@@ -1,3 +1,6 @@
+//routes
+const app = require("./Modules/Routes/index.js");
+//ORM/Databse
 const Clinic = require('./Modules/ORM/clinic.model');
 const Company = require('./Modules/ORM/company.model');
 const EmployeeRecord = require('./Modules/ORM/empRecord.model');
@@ -5,6 +8,7 @@ const MC = require('./Modules/ORM/mc.model');
 const MedRecord = require('./Modules/ORM/medRecord.model');
 const Person = require('./Modules/ORM/person.model');
 
+//Sync database
 Clinic.sync();
 Company.sync();
 EmployeeRecord.sync();
@@ -12,22 +16,22 @@ MC.sync();
 MedRecord.sync();
 Person.sync();
 
-const express = require('express');
-const path = require('path');
+// const express = require('express');
+// const path = require('path');
 
-const app = express();
+// const app = express();
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+// app.use(express.json());
+// app.use(express.urlencoded({extended: true}));
 
-app.get('/', (req, res) => {
-    res.json("Test");
-})
+// app.get('/', (req, res) => {
+//     res.json("Test");
+// })
 
-//routes
-
+//port number
 const PORT = process.env.PORT || 5000;
 
+//app to run at this port number
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}...`);
 });
