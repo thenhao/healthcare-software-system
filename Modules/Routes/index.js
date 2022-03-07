@@ -1,7 +1,45 @@
-const express = require('express');
-const { append } = require('express/lib/response');
-const router = express.Router();
+const express = require("express");
+const app = express();
+app.use(express.json());
 
-append.use(express.json());
+//example of defining routes:
+//Tianhao
+//*******************routes import**********************
+//const protectedRouters = require("./protected.routes");
+//const generalRoutes = require("./general.routes");
+//*******************routes use**********************
+//app.use(protectedRouters);
+//app.use(generalRoutes);
+//---------------------------------------------------------------------------------------------------------
 
-module.exports = router;
+//Jeffery
+//*******************routes import**********************
+//***place here****
+//*******************routes use**********************
+//***place here****
+
+//Regina
+//*******************routes import**********************
+//***place here****
+//*******************routes use**********************
+//***place here****
+
+//Sarah
+//*******************routes import**********************
+//***place here****
+//*******************routes use**********************
+//***place here****
+
+//Shaun
+//*******************routes import**********************
+//***place here****
+//*******************routes use**********************
+//***place here****
+
+//Tianhao
+//*******************routes import**********************
+//***place here****
+//*******************routes use**********************
+//***place here****
+
+module.exports = app;
