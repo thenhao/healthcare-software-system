@@ -26,9 +26,9 @@ app.use(express.json());
 
 //Sarah
 //*******************routes import**********************
-//***place here****
+const createMC = require('../Routes/Sarah/mc.route');
 //*******************routes use**********************
-//***place here****
+app.use(createMC);
 
 //Shaun
 //*******************routes import**********************
@@ -42,20 +42,4 @@ const supervisorViewMC = require("./Tianhao/supervisor.viewmc.routes");
 //*******************routes use**********************
 app.use(supervisorViewMC);
 
-
 module.exports = app;
-
-//--------------------end of index.js-----------------------
-
-
-
-
-//previous code ---to be deleted if all okay-----
-// const express = require('express');
-// const { append } = require('express/lib/response');
-// const router = express.Router();
-
-// append.use(express.json());
-
-// module.exports = router;
-

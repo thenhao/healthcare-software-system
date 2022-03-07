@@ -71,4 +71,3 @@ EmployeeRecord.belongsTo(
 );
 
 module.exports = EmployeeRecord;
-
