@@ -3,7 +3,7 @@ const CurrentVisitService = require('../../Services/Regina/clinicCurrentVisit.se
 class CurrentVisitController {
 
   async createVisitRecord(req, res){
-    if(typeof req.body.issueMC !== 'boolean' || typeof req.body.currentDiagnosis !== 'string'){
+    if(typeof req.body.clinicID !== 'number' || req.body.fin !== 'string' || req.body.issueMC !== 'boolean' || typeof req.body.mcID !== 'number' || typeof req.body.nextOfKinID !== 'number' || typeof req.body.currentDiagnosis !== 'string'){
       res.status(400);
       return res.json({message: "Incorrect data requested."});
     }
