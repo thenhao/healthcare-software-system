@@ -8,9 +8,15 @@ class CurrentVisitController {
       return res.json({message: "Incorrect data requested."});
     }
 
-    const result = await CurrentVisitService.updateRecord(req.body);
+    const result = await CurrentVisitService.createVisitRecord(req.body);
     res.status(result.status);
 
+    return res.json({data: result.data, status: result.status, message: result.message});
+  }
+
+  async findVisitRecord(req, res){
+    const result = await CurrentVisitService.findVisitRecord(req.body);
+    res.status(result.status);
     return res.json({data: result.data, status: result.status, message: result.message});
   }
 }
