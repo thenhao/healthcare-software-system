@@ -1,4 +1,4 @@
-const MedRecord = require('../../ORM/medRecord.model');
+const CurrentVisit = require('../../ORM/currentVisit.model');
 
 module.exports = {
 
@@ -9,7 +9,7 @@ module.exports = {
       message: null
     }
 
-    const medicalRecord = await MedRecord.findByPK(request.regNo);
+    const medicalRecord = await CurrentVisit.findByPK(request.regNo);
 
     if(!medicalRecord){
       result.message = `Medical Record with RegNo ${request.regNo} does not exist.`
