@@ -2,6 +2,7 @@ const { DataTypes, Model, Sequelize } = require("sequelize");
 const {sequelize} = require('./setup');
 const Person = require('./person.model');
 const NextOfKin = require("./nextOfKin.model");
+const Clinic = require("./clinic.model");
 
 class FullMedicalRecord extends Model {}
 
@@ -53,6 +54,13 @@ FullMedicalRecord.init(
     sequelize,
     modelName: "FullMedicalRecord",
     tableName: "FullMedicalRecord",
+  }
+);
+
+FullMedicalRecord.belongsTo(
+  Clinic,
+  {
+    foreignKey: 'clinicID'
   }
 );
 
