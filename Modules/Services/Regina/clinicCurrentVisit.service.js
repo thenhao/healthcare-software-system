@@ -1,4 +1,5 @@
 const CurrentVisit = require('../../ORM/currentVisit.model');
+const Person = require('../../ORM/person.model');
 
 module.exports = {
 
@@ -8,21 +9,27 @@ module.exports = {
       status: null,
       message: null
     }
+    
+    const person = await Person.findByPk(request.FIN);
+
+    if(!person){
+      result.status = 404;
+      result.message = `FIN No ${request.FIN} does not exist in the system.`
+      return result;
+    }
 
     const visitRecord = await CurrentVisit.create({
       clinicID: request.clinicID,
-      fin: request.fin,
+      FIN: request.FIN,
       issueMC: request.issueMC,
       mcID: request.mcID,
       nextOfKinID: request.nextOfKinID,
       currentDiagnosis: request.currentDiagnosis
     });
 
-    await visitRecord.save();
-
     result.data = visitRecord;
     result.status = 200;
-    result.message = `Visit Record for FIN No ${request.fin} has been successfully updated.`
+    result.message = `Visit Record ${visitRecord.regNo} for FIN No ${request.FIN} has been successfully updated.`
     return result;
   }
 }
