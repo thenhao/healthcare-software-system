@@ -12,12 +12,12 @@ const FullMedicalRecord = require("./Modules/ORM/fullMedicalRecord.model");
 
 
 //Sync database
+Person.sync();
 Clinic.sync();
 Company.sync();
 EmployeeRecord.sync();
 MC.sync();
 CurrentVisit.sync();
-Person.sync();
 NextOfKin.sync();
 FullMedicalRecord.sync();
 
