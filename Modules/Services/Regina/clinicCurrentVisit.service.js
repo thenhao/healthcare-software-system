@@ -9,20 +9,14 @@ module.exports = {
       message: null
     }
 
-    const visitRecord = await CurrentVisit.findAll({where: {fin: request.fin}});
-
-    if(!visitRecord){
-      result.message = `Visit Record with FIN No ${request.fin} does not exist.`
-      result.status = 404;
-      return result;
-    }
-
-    visitRecord.clinicID = request.clinicID;
-    visitRecord.fin = request.fin;
-    visitRecord.issueMC = request.issueMC;
-    visitRecord.mcID = request.mcID;
-    visitRecord.nextOfKinID = request.nextOfKinID;
-    visitRecord.currentDiagnosis = request.currentDiagnosis;
+    const visitRecord = await CurrentVisit.create({
+      clinicID: request.clinicID,
+      fin: request.fin,
+      issueMC: request.issueMC,
+      mcID: request.mcID,
+      nextOfKinID: request.nextOfKinID,
+      currentDiagnosis: request.currentDiagnosis
+    });
 
     await visitRecord.save();
 
