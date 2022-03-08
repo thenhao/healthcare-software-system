@@ -15,8 +15,13 @@ app.use(express.json());
 //Jeffery
 //*******************routes import**********************
 //***place here****
+const medRecordRoute = require("./Jeffery/medRecord.route.js");
+
+
 //*******************routes use**********************
 //***place here****
+app.use(medRecordRoute);
+
 
 //Regina
 //*******************routes import**********************

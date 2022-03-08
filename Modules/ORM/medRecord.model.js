@@ -62,12 +62,12 @@ MedRecord.init(
     createdAt: {
       type: DataTypes.DATE,
       field: "created_at",
-      defaultValue: Sequelize.fn('NOW'),
+      defaultValue: DataTypes.DATE,
     },
     updatedAt: {
       type: DataTypes.DATE,
       field: "updated_at",
-      defaultValue: Sequelize.fn('NOW'),
+      defaultValue: DataTypes.DATE,
     },
   },
   {
