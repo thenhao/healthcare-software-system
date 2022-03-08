@@ -1,4 +1,4 @@
-const updateMedRecordService = require('../../Services/Regina/clinicCurrentVisit.service');
+const CurrentVisitService = require('../../Services/Regina/clinicCurrentVisit.service');
 
 class CurrentVisitController {
 
@@ -8,7 +8,7 @@ class CurrentVisitController {
       return res.json({message: "Incorrect data requested."});
     }
 
-    const result = await updateMedRecordService.updateRecord(req.body);
+    const result = await CurrentVisitService.updateRecord(req.body);
     res.status(result.status);
 
     return res.json({data: result.data, status: result.status, message: result.message});
