@@ -17,7 +17,7 @@ MedRecord.sync();
 Person.sync();
 
 app.get('/', (req, res) => {
-    res.json("Test");
+    res.json("Hello world");
 })
 
 //port number
