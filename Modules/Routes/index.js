@@ -20,9 +20,9 @@ app.use(express.json());
 
 //Regina
 //*******************routes import**********************
-const updateMedicalRecord = require('../Routes/Regina/clinicUpdateRecord.routes');
+const createCurrentVisit = require('../Routes/Regina/clinicCurrentVisit.route');
 //*******************routes use**********************
-app.use(updateMedicalRecord);
+app.use(createCurrentVisit);
 
 //Sarah
 //*******************routes import**********************
