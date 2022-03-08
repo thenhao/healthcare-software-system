@@ -81,6 +81,9 @@ module.exports = {
       message: null
     }
 
-    const updateRecord = await CurrentVisit.findByPk
+    const updateRecord = await CurrentVisit.findAll({where: {regNo: request.regNo, FIN: request.FIN}});
+    result.data = updateRecord;
+    result.status = 200;
+    result.message = `Visit Record ${request.regNo} update for FIN No ${request.FIN} is successful.`
   }
 }
