@@ -1,6 +1,6 @@
 const { DataTypes, Model, Sequelize } = require("sequelize");
 const {sequelize} = require('./setup');
-const EmployeeRecord = require("./empRecord.model");
+
 
 class Person extends Model {}
 
@@ -42,11 +42,6 @@ Person.init(
   }
 );
 
-// Person.belongsTo(
-//   EmployeeRecord,
-//   {
-//     foreignKey: 'FIN'
-//   }
-//)
+
 
 module.exports = Person;

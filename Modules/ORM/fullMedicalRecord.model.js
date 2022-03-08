@@ -1,19 +1,19 @@
 const { DataTypes, Model, Sequelize } = require("sequelize");
 const {sequelize} = require('./setup');
-const Clinic = require('./clinic.model');
 const Person = require('./person.model');
-const MC = require('./mc.model');
+const NextOfKin = require("./nextOfKin.model");
+const Clinic = require("./clinic.model");
 
-class MedRecord extends Model {}
+class FullMedicalRecord extends Model {}
 
-MedRecord.init(
+FullMedicalRecord.init(
   {
-    regNo: {
+    recordID: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
-      field: 'reg_no'
+      field: 'record_ID'
     },
     clinicID: {
       type: DataTypes.INTEGER,
@@ -24,78 +24,58 @@ MedRecord.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    issueMC: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      field: 'issue_mc'
-    },
-    mcID: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      field: 'mc_ID'
-    },
     medicalHistory: {
       type: DataTypes.STRING,
       allowNull: false,
       field: 'medical_history'
-    },
-    currentDiagnosis: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      field: 'current_diagnosis'
     },
     visitHistory: {
       type: DataTypes.DATE,
       allowNull: false,
       field: 'visit_history'
     },
-    nextOfKinName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      field: 'next_of_kin_name'
-    },
-    nextOfKinContact: {
+    nextOfKinID: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'next_of_kin_contact'
+      field: 'next_of_kin_ID'
     },
     createdAt: {
       type: DataTypes.DATE,
       field: "created_at",
-      defaultValue: DataTypes.DATE,
+      defaultValue: Sequelize.fn('NOW'),
     },
     updatedAt: {
       type: DataTypes.DATE,
       field: "updated_at",
-      defaultValue: DataTypes.DATE,
+      defaultValue: Sequelize.fn('NOW'),
     },
   },
   {
     sequelize,
-    modelName: "MedRecord",
-    tableName: "MedRecord",
+    modelName: "FullMedicalRecord",
+    tableName: "FullMedicalRecord",
   }
 );
 
-MedRecord.belongsTo(
+FullMedicalRecord.belongsTo(
   Clinic,
   {
     foreignKey: 'clinicID'
   }
 );
 
-MedRecord.belongsTo(
-  Person,
+FullMedicalRecord.belongsTo(
+    Person,
+    {
+      foreignKey: 'FIN'
+    }
+  );
+
+FullMedicalRecord.belongsTo(
+  NextOfKin,
   {
-    foreignKey: 'FIN'
+    foreignKey: 'nextOfKinID'
   }
 );
 
-MedRecord.belongsTo(
-  MC,
-  {
-    foreignKey: 'mcID'
-  }
-);
-
-module.exports = MedRecord;
+module.exports = FullMedicalRecord;
