@@ -1,5 +1,4 @@
 //As a Clinic Assistant, I am able to create a MC for the person by using his FIN
-//As a Clinic Assistant, I am able to create a MC for the person by using his FIN
 const Person = require("../../ORM/person.model.js");
 const MC = require("../../ORM/mc.model.js");
 const Clinic = require("../../ORM/clinic.model.js");

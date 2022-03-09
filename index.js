@@ -5,16 +5,21 @@ const Clinic = require('./Modules/ORM/clinic.model');
 const Company = require('./Modules/ORM/company.model');
 const EmployeeRecord = require('./Modules/ORM/empRecord.model');
 const MC = require('./Modules/ORM/mc.model');
-const MedRecord = require('./Modules/ORM/medRecord.model');
+const CurrentVisit = require('./Modules/ORM/currentVisit.model');
 const Person = require('./Modules/ORM/person.model');
+const NextOfKin = require("./Modules/ORM/nextOfKin.model");
+const FullMedicalRecord = require("./Modules/ORM/fullMedicalRecord.model");
+
 
 //Sync database
-Clinic.sync();
-Company.sync();
-EmployeeRecord.sync();
-MC.sync();
-MedRecord.sync();
-Person.sync();
+// Person.sync();
+// Clinic.sync();
+// Company.sync();
+// EmployeeRecord.sync();
+// MC.sync();
+// CurrentVisit.sync();
+// NextOfKin.sync();
+// FullMedicalRecord.sync();
 
 app.get('/', (req, res) => {
     res.json("Hello world");

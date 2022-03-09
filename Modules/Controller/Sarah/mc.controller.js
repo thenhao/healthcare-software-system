@@ -3,30 +3,28 @@
 //Import McService
 const mcService = require('../../Services/Sarah/mc.service.js');
 
+//Import Joi
+const Joi = require('joi');
+
 //For post request
 class McController {
     async createMC(req, res) {
-        
         const {fin, clinicID, mcStartDate, mcEndDate, status} = req.body;
-        
-        if(typeof fin !== "string" || 
-            typeof clinicID !== "number" || 
-            typeof mcStartDate !== "string" || 
-            typeof mcEndDate !== "string" || 
-            typeof status !== "string"
-        )
-        {
-             res.status(400);
-             return res.json({message: "Incorrect request data"})
-        }
-        
-        try {
+
+        const schema = Joi.object().keys({
+            fin: Joi.string().trim().required(),
+            clinicID: Joi.number().required(),
+            mcStartDate: Joi.date().required(),
+            mcEndDate: Joi.date().required(),
+            status: Joi.string().trim().required()
+        });
+
+        const validation = schema.validate(req.body);
+        if (validation) {
             const result = await mcService.createMC(fin, clinicID, mcStartDate, mcEndDate, status);
-            res.status(result.status);
-            return res.json({data:result.data, status: result.status, message:result.message});
-        } catch(error) {
-            console.log(error.message);
-            res.status(500).send({message: "An error has occurred."})
+            res.json({data:result.data, status: result.status, message:result.message})
+        } else if (!validation) {
+            res.status(400).json({message: "Incorrect request data"})
         }
     }
 }

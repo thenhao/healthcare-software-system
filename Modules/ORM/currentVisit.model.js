@@ -3,10 +3,11 @@ const {sequelize} = require('./setup');
 const Clinic = require('./clinic.model');
 const Person = require('./person.model');
 const MC = require('./mc.model');
+const NextOfKin = require("./nextOfKin.model");
 
-class MedRecord extends Model {}
+class CurrentVisit extends Model {}
 
-MedRecord.init(
+CurrentVisit.init(
   {
     regNo: {
       type: DataTypes.INTEGER,
@@ -34,68 +35,60 @@ MedRecord.init(
       allowNull: false,
       field: 'mc_ID'
     },
-    medicalHistory: {
-      type: DataTypes.STRING,
+    nextOfKinID: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'medical_history'
+      field: 'next_of_kin_ID'
     },
     currentDiagnosis: {
       type: DataTypes.STRING,
       allowNull: false,
       field: 'current_diagnosis'
     },
-    visitHistory: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      field: 'visit_history'
-    },
-    nextOfKinName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      field: 'next_of_kin_name'
-    },
-    nextOfKinContact: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      field: 'next_of_kin_contact'
-    },
     createdAt: {
       type: DataTypes.DATE,
       field: "created_at",
-      defaultValue: Sequelize.fn('NOW'),
+      defaultValue: new Date(),
     },
     updatedAt: {
       type: DataTypes.DATE,
       field: "updated_at",
-      defaultValue: Sequelize.fn('NOW'),
+      defaultValue: new Date(),
     },
   },
   {
     sequelize,
-    modelName: "MedRecord",
-    tableName: "MedRecord",
+    modelName: "CurrentVisit",
+    tableName: "CurrentVisit",
   }
 );
 
-MedRecord.belongsTo(
+CurrentVisit.belongsTo(
   Clinic,
   {
     foreignKey: 'clinicID'
   }
 );
 
-MedRecord.belongsTo(
+CurrentVisit.belongsTo(
   Person,
   {
     foreignKey: 'FIN'
   }
 );
 
-MedRecord.belongsTo(
+CurrentVisit.belongsTo(
   MC,
   {
     foreignKey: 'mcID'
   }
 );
 
-module.exports = MedRecord;
+CurrentVisit.belongsTo(
+  NextOfKin,
+  {
+    foreignKey: 'nextOfKinID'
+  }
+);
+
+module.exports = CurrentVisit;

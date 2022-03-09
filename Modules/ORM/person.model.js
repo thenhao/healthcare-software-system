@@ -1,6 +1,6 @@
 const { DataTypes, Model, Sequelize } = require("sequelize");
 const {sequelize} = require('./setup');
-//const EmployeeRecord = require("./empRecord.model");
+
 
 class Person extends Model {}
 
@@ -27,12 +27,12 @@ Person.init(
     createdAt: {
       type: DataTypes.DATE,
       field: "created_at",
-      defaultValue: Sequelize.fn('NOW'),
+      defaultValue: new Date(),
     },
     updatedAt: {
       type: DataTypes.DATE,
       field: "updated_at",
-      defaultValue: Sequelize.fn('NOW'),
+      defaultValue: new Date(),
     },
   },
   {
@@ -42,11 +42,6 @@ Person.init(
   }
 );
 
-// Person.belongsTo(
-//   EmployeeRecord,
-//   {
-//     foreignKey: 'FIN'
-//   }
-//)
+
 
 module.exports = Person;

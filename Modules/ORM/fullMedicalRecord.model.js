@@ -1,41 +1,43 @@
 const { DataTypes, Model, Sequelize } = require("sequelize");
 const {sequelize} = require('./setup');
-const Clinic = require('./clinic.model');
 const Person = require('./person.model');
+const NextOfKin = require("./nextOfKin.model");
+const Clinic = require("./clinic.model");
 
-class MC extends Model {}
+class FullMedicalRecord extends Model {}
 
-MC.init(
+FullMedicalRecord.init(
   {
-    mcId: {
+    recordID: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
-      field: 'mc_ID'
-    },
-    FIN: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      field: 'record_ID'
     },
     clinicID: {
       type: DataTypes.INTEGER,
       allowNull: false,
       field: 'clinic_ID'
     },
-    mcStartDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      field: 'mc_start_date'
-    },
-    mcEndDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      field: 'mc_end_date'
-    },
-    status: {
+    FIN: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    medicalHistory: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      field: 'medical_history'
+    },
+    visitHistory: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      field: 'visit_history'
+    },
+    nextOfKinID: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: 'next_of_kin_ID'
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -50,23 +52,30 @@ MC.init(
   },
   {
     sequelize,
-    modelName: "MC",
-    tableName: "MC",
+    modelName: "FullMedicalRecord",
+    tableName: "FullMedicalRecord",
   }
 );
 
-MC.belongsTo(
+FullMedicalRecord.belongsTo(
   Clinic,
   {
     foreignKey: 'clinicID'
   }
 );
 
-MC.belongsTo(
-  Person,
+FullMedicalRecord.belongsTo(
+    Person,
+    {
+      foreignKey: 'FIN'
+    }
+  );
+
+FullMedicalRecord.belongsTo(
+  NextOfKin,
   {
-    foreignKey: 'FIN'
+    foreignKey: 'nextOfKinID'
   }
 );
 
-module.exports = MC;
+module.exports = FullMedicalRecord;
