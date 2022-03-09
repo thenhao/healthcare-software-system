@@ -4,7 +4,7 @@ class LoginController {
 
   async login(req, res){
 
-    if(typeof req.body.role !== 'string' || typeof req.body.username !== 'string' || typeof req.body.password !== 'string'){
+    if(typeof req.body.username !== 'string' || typeof req.body.password !== 'string'){
       res.status(400);
       return res.send('Please input data.');
     }

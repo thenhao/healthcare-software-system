@@ -1,6 +1,6 @@
 const User = require('../../ORM/user.model');
 
-const generateJWT = require('../../Authorization/jwt');
+const {generateJWT} = require('../../Authorization/jwt');
 const {verifyHash} = require('../../Authorization/hash');
 
 module.exports = {
