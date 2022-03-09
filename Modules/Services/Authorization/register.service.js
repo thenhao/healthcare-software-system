@@ -6,13 +6,12 @@ module.exports = {
 
   register: async(request) => {
     let result = {
-      data: null,
       status: null,
       message: null
     }
 
-    const registerData = User.findOne({where: {username: request.username}}); // searches for the data
-
+    const registerData = await User.findOne({where: {username: request.username}}); // searches for the data
+    
     if(registerData) {
       result.status = 409;
       result.message = `Username already exists.`;
