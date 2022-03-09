@@ -21,7 +21,7 @@ const User = require("./Modules/ORM/user.model.js");
 // CurrentVisit.sync();
 // NextOfKin.sync();
 // FullMedicalRecord.sync();
-User.sync();
+// User.sync();
 
 app.get('/', (req, res) => {
     res.json("Test");
