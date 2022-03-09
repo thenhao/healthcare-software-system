@@ -1,3 +1,4 @@
+const Joi = require('joi');
 //import the service
 const supervisorService = require("../../Services/Tianhao/supervisor.service.js");
 
@@ -16,10 +17,20 @@ class SupervisorController{
 
     async findSpecificEmployee(req, res, next){
         console.log(typeof req.params.employeeID);
-        if(typeof parseInt(req.params.employeeID) !== "number"){
+
+        const schema = Joi.object().keys({
+            employeeID: Joi.number().required()
+        })
+
+        const validate = schema.validate({employeeID:parseInt(req.params.employeeID)});
+        
+        if(!validate){
             res.status(400);
             return res.json({message:"Incorrect request data"})
+        }else{
+            console.log(`${validate.value}`);
         }
+
         //use the service layer
         const result = await supervisorService.findSpecificEmployee(req.params.employeeID);
         res.status(result.status);
