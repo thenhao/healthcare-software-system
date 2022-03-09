@@ -58,32 +58,5 @@ module.exports = {
     result.status = 200;
     result.message = `Visit Record ${visitRecord.regNo} for FIN No ${request.FIN} has been successfully updated.`
     return result;
-  },
-
-  findVisitRecord: async(request) => {
-    let result = {
-      data: null,
-      status: null,
-      message: null
-    }
-
-    const findRecord = await CurrentVisit.findAll({where: {FIN: request.FIN}});
-    
-    result.data = findRecord;
-    result.status = 200;
-    result.message = `Visit Record retrieval for FIN No ${request.FIN} is successful.`
-  },
-
-  updateVisitRecord: async(request) => {
-    let result = {
-      data: null,
-      status: null,
-      message: null
-    }
-
-    const updateRecord = await CurrentVisit.findAll({where: {regNo: request.regNo, FIN: request.FIN}});
-    result.data = updateRecord;
-    result.status = 200;
-    result.message = `Visit Record ${request.regNo} update for FIN No ${request.FIN} is successful.`
   }
 }
