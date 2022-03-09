@@ -8,7 +8,6 @@ module.exports = {
   login: async(request) => {
 
     let result = {
-      data: null,
       status: null,
       message: null
     }

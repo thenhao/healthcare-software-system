@@ -6,7 +6,6 @@ module.exports = {
 
   register: async(request) => {
     let result = {
-      data: null,
       status: null,
       message: null
     }
