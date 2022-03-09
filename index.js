@@ -23,6 +23,7 @@ FullMedicalRecord.sync();
 
 app.get('/', (req, res) => {
     res.json("Test");
+    res.status(200);
 })
 
 //port number
