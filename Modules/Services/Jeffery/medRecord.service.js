@@ -1,4 +1,5 @@
 const MedRecord = require("../../ORM/fullMedicalRecord.model");
+const Person = require("../../ORM/person.model.js");
 
 module.exports = {
 
@@ -18,6 +19,14 @@ module.exports = {
     */
         createNewPatient: async (data) => {
             data.visitHistory = new Date();
+            
+            const person = await Person.findByPk(request.FIN);
+
+            if(!person){
+              result.status = 404;
+              result.message = `FIN No ${request.FIN} does not exist in the system.`
+              return result;
+            }
             
             try{
                 return await MedRecord.create(data);  

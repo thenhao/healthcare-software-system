@@ -48,20 +48,12 @@ CurrentVisit.init(
     createdAt: {
       type: DataTypes.DATE,
       field: "created_at",
-<<<<<<< HEAD
-      defaultValue: DataTypes.DATE,
-=======
       defaultValue: new Date(),
->>>>>>> main
     },
     updatedAt: {
       type: DataTypes.DATE,
       field: "updated_at",
-<<<<<<< HEAD
-      defaultValue: DataTypes.DATE,
-=======
       defaultValue: new Date(),
->>>>>>> main
     },
   },
   {
