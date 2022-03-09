@@ -12,6 +12,9 @@
   "name": "healthcare-software-system",
   "version": "1.0.0",
   "main": "index.js",
+  "engine": {
+    "node": ">=12.0.0"
+  },
   "scripts": {
     "start": "nodemon index.js"
   },
