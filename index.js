@@ -21,10 +21,10 @@ CurrentVisit.sync();
 NextOfKin.sync();
 FullMedicalRecord.sync();
 
-app.get('/', (req, res) => {
-    res.json("Test");
-    res.status(200);
-})
+// app.get('/', (req, res) => {
+//     res.json("Test");
+//     res.status(200);
+// })
 
 //port number
 const PORT = process.env.PORT || 5000;

@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
 app.use(express.json());
-
+app.get('/', (req, res) => {
+    res.json("Test");
+    res.status(200);
+})
 //example of defining routes:
 //Tianhao
 //*******************routes import**********************
@@ -41,5 +44,8 @@ app.use(createMC);
 const supervisorViewMC = require("./Tianhao/supervisor.viewmc.routes");
 //*******************routes use**********************
 app.use(supervisorViewMC);
+
+
+
 
 module.exports = app;
