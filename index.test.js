@@ -52,11 +52,11 @@ describe('healthcare API', () => {
         const res = await request(app)
             .post('/createVisitRecord')
             .send({
-                fin: 'G4941042Q',
                 clinicID: 1,
-                mcStartDate: '2022-12-05T16:00:00.000Z',
-                   mcEndDate: '2022-12-07T16:00:00.000Z',
-                status: 'Not fit for work'
+                FIN: 'G4941042Q',
+                issueMC: true,
+                nextOfKinID: 1,
+                currentDiagnosis: 'Upper respiratory tract infection'
             })
         expect(res.statusCode).toEqual(200)
     })
