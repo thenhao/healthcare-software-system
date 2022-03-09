@@ -1,41 +1,30 @@
+const Joi = require('joi');
 const CurrentVisitService = require('../../Services/Regina/clinicCurrentVisit.service');
 
 class CurrentVisitController {
 
   async createVisitRecord(req, res){
-    if(typeof req.body.clinicID !== 'number' || typeof req.body.FIN !== 'string' || typeof req.body.issueMC !== 'boolean' || typeof req.body.mcID !== 'number' || typeof req.body.nextOfKinID !== 'number' || typeof req.body.currentDiagnosis !== 'string'){
-      res.status(400);
-      return res.json({message: "Incorrect data requested."});
+
+    const schema = Joi.object().keys({
+      clinicID: Joi.number().required(),
+      fin: Joi.string().min(9).max(9).trim().required(),
+      issueMC: Joi.boolean().required(),
+      mcID: Joi.number().required(),
+      nextOfKinID: Joi.number().required(),
+      currentDiagnosis: Joi.string().required()
+    });
+   
+    const dataValidation = schema.validate(req.body);
+    if(dataValidation){
+      const result = await CurrentVisitService.createVisitRecord(req.body);
+      res.status(result.status);
+
+      return res.json({data: result.data, status: result.status, message: result.message});
     }
-
-    const result = await CurrentVisitService.createVisitRecord(req.body);
-    res.status(result.status);
-
-    return res.json({data: result.data, status: result.status, message: result.message});
-  }
-
-  async findVisitRecord(req, res){
-    if(typeof req.body.FIN !== 'string'){
+    else if(!dataValidation){
       res.status(400);
-      return res.json({message: "Incorrect data requested."});
-    }
-
-    const result = await CurrentVisitService.findVisitRecord(req.body);
-    res.status(result.status);
-
-    return res.json({data: result.data, status: result.status, message: result.message});
-  }
-
-  async updateVisitRecord(req, res){
-    if(typeof req.body.issueMC !== 'boolean' || typeof req.body.currentDiagnosis !== 'string'){
-      res.status(400);
-      return res.json({message: "Incorrect data requested."});
-    }
-
-    const result = await CurrentVisitService.updateVisitRecord(req.body);
-    res.status(result.status);
-    
-    return res.json({data: result.data, status: result.status, message: result.message});
+      return res.json({message: "Incorrect request data."});
+    } 
   }
 }
 
