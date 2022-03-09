@@ -13,11 +13,11 @@ module.exports = {
       message: null
     }
     
-    const person = await Person.findByPk(request.FIN);
+    const person = await Person.findByPk(request.fin);
 
     if(!person){
       result.status = 404;
-      result.message = `FIN No ${request.FIN} does not exist in the system.`
+      result.message = `FIN No ${request.fin} does not exist in the system.`
       return result;
     }
 
@@ -47,7 +47,7 @@ module.exports = {
 
     const visitRecord = await CurrentVisit.create({
       clinicID: request.clinicID,
-      FIN: request.FIN,
+      FIN: request.fin,
       issueMC: request.issueMC,
       mcID: request.mcID,
       nextOfKinID: request.nextOfKinID,
@@ -56,7 +56,7 @@ module.exports = {
 
     result.data = visitRecord;
     result.status = 200;
-    result.message = `Visit Record ${visitRecord.regNo} for FIN No ${request.FIN} has been successfully updated.`
+    result.message = `Visit Record ${visitRecord.regNo} for FIN No ${request.fin} has been successfully updated.`
     return result;
   }
 }
