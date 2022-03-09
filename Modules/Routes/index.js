@@ -20,21 +20,21 @@ app.use(express.json());
 
 //Regina
 //*******************routes import**********************
-const createCurrentVisit = require('../Routes/Regina/clinicCurrentVisit.route');
+const createCurrentVisit = require("../Routes/Regina/clinicCurrentVisit.route");
 //*******************routes use**********************
 app.use(createCurrentVisit);
 
 //Sarah
 //*******************routes import**********************
-const createMC = require('../Routes/Sarah/mc.route');
+const createMC = require("../Routes/Sarah/mc.route");
 //*******************routes use**********************
 app.use(createMC);
 
 //Shaun
 //*******************routes import**********************
-//***place here****
+const employeeWorking = require("../Routes/Shaun/isEmployeeAtWork.route");
 //*******************routes use**********************
-//***place here****
+app.use(employeeWorking);
 
 //Tianhao
 //*******************routes import**********************
