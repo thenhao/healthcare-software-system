@@ -1,5 +1,7 @@
 const User = require('../../ORM/user.model');
 
+const {generateHash} = require('../../Authorization/hash');
+
 module.exports = {
 
   register: async(request) => {
