@@ -1,4 +1,4 @@
-const {MedRecord} = require("../../ORM/medRecord.model");
+const MedRecord = require("../../ORM/fullMedicalRecord.model");
 
 module.exports = {
 

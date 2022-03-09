@@ -1,6 +1,6 @@
 const {createNewPatient} = require("../../Services/Jeffery/medRecord.service");
 
-const createNewMedicalRecord = async (req, res) => {
+const createNewMedRecord = async (req, res) => {
   
     try{
       const created = await createNewPatient(req.body);
@@ -13,5 +13,5 @@ const createNewMedicalRecord = async (req, res) => {
 }
 
 module.exports = {
-  createNewMedicalRecord
+  createNewMedRecord
 }

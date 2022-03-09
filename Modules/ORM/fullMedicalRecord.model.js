@@ -32,7 +32,8 @@ FullMedicalRecord.init(
     visitHistory: {
       type: DataTypes.DATE,
       allowNull: false,
-      field: 'visit_history'
+      field: 'visit_history',
+      defaultValue: new Date(),
     },
     nextOfKinID: {
       type: DataTypes.INTEGER,
@@ -42,12 +43,12 @@ FullMedicalRecord.init(
     createdAt: {
       type: DataTypes.DATE,
       field: "created_at",
-      defaultValue: Sequelize.fn('NOW'),
+      defaultValue: new Date(),
     },
     updatedAt: {
       type: DataTypes.DATE,
       field: "updated_at",
-      defaultValue: Sequelize.fn('NOW'),
+      defaultValue: new Date(),
     },
   },
   {
