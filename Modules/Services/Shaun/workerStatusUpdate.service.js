@@ -51,7 +51,7 @@ module.exports = {
     }
     employeeRecord.isWorkingToday = isWorkingToday;
     await employeeRecord.save();
-
+    
     result.data = employeeRecord;
     result.status = 200;
     result.message = `Employee record of:${fin} successfully updated `;
