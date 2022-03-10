@@ -15,10 +15,10 @@ class CurrentVisitController {
     });
    
     const dataValidation = schema.validate(req.body);
+
     if(dataValidation){
       const result = await CurrentVisitService.createVisitRecord(req.body);
       res.status(result.status);
-
       return res.json({data: result.data, status: result.status, message: result.message});
     }
     else if(!dataValidation){
