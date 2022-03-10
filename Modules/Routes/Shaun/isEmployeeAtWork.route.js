@@ -1,4 +1,4 @@
-const {authSupervisor} = require('../../Authorization/auth');
+const {authSupervisor} = require('../../Authorization/auth'); // this is for JWT role auth, please do not remove this!
 
 //as a supervisor I want to be able to update into the employee records that the employee is at work today
 
