@@ -14,9 +14,9 @@ const User = require("../Modules/ORM/user.model.js");
 
 
 (async () => {
-     await FullMedicalRecord.destroy({where: {}})
-     await CurrentVisit.destroy({where: {}})
-     await MC.destroy({ where: {} })
+     await FullMedicalRecord.destroy({ truncate: true, restartIdentity: true })
+     await CurrentVisit.destroy({ truncate: true, restartIdentity: true })
+     await MC.destroy({ truncate: true, restartIdentity: true }); 
  })();
 
 let clinicToken = '';
