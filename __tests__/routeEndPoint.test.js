@@ -42,7 +42,7 @@ beforeAll(async () => {
 
 let mcReg = 0;
 
- jest.setTimeout(30000);
+jest.setTimeout(30000);
 
 describe('healthcare API', () => {
     it('login with token, supervisor token, wrong username should return status 404', async () => {

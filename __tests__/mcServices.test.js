@@ -3,9 +3,9 @@ const Clinic = require("../Modules/ORM/clinic.model");
 const MC = require("../Modules/ORM/mc.model");
 const mcTest = require("../Modules/Services/Sarah/mc.service");
 
-(async () => {
-     await MC.destroy({ where: {} })
- })();
+// (async () => {
+//      await MC.destroy({ where: {} })
+//  })();
 
 
 jest.setTimeout(30000);
