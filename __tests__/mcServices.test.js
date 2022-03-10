@@ -42,49 +42,49 @@ describe(`Test for create MC`, () => {
     test (`create mc test, person does not exist, fail return 404`, async () => {
         Person.findByPk = jest.fn().mockReturnValue();
         Clinic.findByPk = jest.fn().mockReturnValue(testdataG.clinicID);
-        const result = await mcTest.createMC(fin, clinicID, mcStartDate, mcEndDate, status);
+        const result = await mcTest.createMC(testdataG.fin, testdataG.clinicID, testdataG.mcStartDate, testdataG.mcEndDate, testdataG.status);
         expect (result.status).toBe(404);
     })
 
     test (`create mc test, clinic does not exist, fail return 404`, async () => {
         Person.findByPk = jest.fn().mockReturnValue(testdataG.personid);
         Clinic.findByPk = jest.fn().mockReturnValue();
-        const result = await mcTest.createMC(fin, clinicID, mcStartDate, mcEndDate, status);
+        const result = await mcTest.createMC(testdataG.fin, testdataG.clinicID, testdataG.mcStartDate, testdataG.mcEndDate, testdataG.status);
         expect (result.status).toBe(404);
     })
 
     test (`create mc test, wrong fin, fail return 500`, async () => {
         Person.findByPk = jest.fn().mockReturnValue(testdataG.personid);
         Clinic.findByPk = jest.fn().mockReturnValue(testdataG.clinicID);
-        const result = await mcTest.createMC(testdataN.fin, clinicID, mcStartDate, mcEndDate, status);
+        const result = await mcTest.createMC(testdataN.fin, testdataG.clinicID, testdataG.mcStartDate, testdataG.mcEndDate, testdataG.status);
         expect (result.status).toBe(500);
     })
 
     test (`create mc test, wrong clinicID, fail return 500`, async () => {
         Person.findByPk = jest.fn().mockReturnValue(testdataG.personid);
         Clinic.findByPk = jest.fn().mockReturnValue(testdataG.clinicID);
-        const result = await mcTest.createMC(fin, testdataN.clinicID, mcStartDate, mcEndDate, status);
+        const result = await mcTest.createMC(testdataG.fin, testdataN.clinicID, testdataG.mcStartDate, testdataG.mcEndDate, testdataG.status);
         expect (result.status).toBe(500);
     })
 
     test (`create mc test, wrong mcStartDate, fail return 500`, async () => {
         Person.findByPk = jest.fn().mockReturnValue(testdataG.personid);
         Clinic.findByPk = jest.fn().mockReturnValue(testdataG.clinicID);
-        const result = await mcTest.createMC(fin, clinicID, testdataN.mcStartDate, mcEndDate, status);
+        const result = await mcTest.createMC(testdataG.fin, testdataG.clinicID, testdataN.mcStartDate, testdataG.mcEndDate, testdataG.status);
         expect (result.status).toBe(500);
     })
 
     test (`create mc test, wrong mcEndDate, fail return 500`, async () => {
         Person.findByPk = jest.fn().mockReturnValue(testdataG.personid);
         Clinic.findByPk = jest.fn().mockReturnValue(testdataG.clinicID);
-        const result = await mcTest.createMC(fin, clinicID, mcStartDate, testdataN.mcEndDate, status);
+        const result = await mcTest.createMC(testdataG.fin, testdataG.clinicID, testdataG.mcStartDate, testdataN.mcEndDate, testdataG.status);
         expect (result.status).toBe(500);
     })
 
     test (`create mc test, wrong status, fail return 500`, async () => {
         Person.findByPk = jest.fn().mockReturnValue(testdataG.personid);
         Clinic.findByPk = jest.fn().mockReturnValue(testdataG.clinicID);
-        const result = await mcTest.createMC(fin, clinicID, mcStartDate, mcEndDate, testdataN.status);
+        const result = await mcTest.createMC(testdataG.fin, testdataG.clinicID, testdataG.mcStartDate, testdataG.mcEndDate, testdataN.status);
         expect (result.status).toBe(500);
     })
 
