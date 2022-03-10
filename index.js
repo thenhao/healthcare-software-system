@@ -9,6 +9,7 @@ const CurrentVisit = require('./Modules/ORM/currentVisit.model');
 const Person = require('./Modules/ORM/person.model');
 const NextOfKin = require("./Modules/ORM/nextOfKin.model");
 const FullMedicalRecord = require("./Modules/ORM/fullMedicalRecord.model");
+const User = require("./Modules/ORM/user.model.js");
 
 
 //Sync database
@@ -20,6 +21,7 @@ const FullMedicalRecord = require("./Modules/ORM/fullMedicalRecord.model");
 // CurrentVisit.sync();
 // NextOfKin.sync();
 // FullMedicalRecord.sync();
+// User.sync();
 
 app.get('/', (req, res) => {
     res.json("Test");

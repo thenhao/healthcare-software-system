@@ -1,40 +1,44 @@
-const { DataTypes, Model} = require("sequelize");
+const { DataTypes, Model, Sequelize} = require("sequelize");
 const {sequelize} = require('./setup');
 
-class Clinic extends Model {}
+class User extends Model {}
 
-Clinic.init(
+User.init(
   {
-    ID: {
+    userID: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
-    name: {
+    role: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    address: {
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    password: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
       field: "created_at",
-      defaultValue: new Date(),
+      defaultValue: Sequelize.fn('NOW'),
     },
     updatedAt: {
       type: DataTypes.DATE,
       field: "updated_at",
-      defaultValue: new Date(),
+      defaultValue: Sequelize.fn('NOW'),
     },
   },
   {
     sequelize,
-    modelName: "Clinic",
-    tableName: "Clinic",
+    modelName: "User",
+    tableName: "User",
   }
 );
 
-module.exports = Clinic;
+module.exports = User;

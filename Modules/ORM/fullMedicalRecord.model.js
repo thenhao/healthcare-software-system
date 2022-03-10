@@ -1,4 +1,4 @@
-const { DataTypes, Model, Sequelize } = require("sequelize");
+const { DataTypes, Model} = require("sequelize");
 const {sequelize} = require('./setup');
 const Person = require('./person.model');
 const NextOfKin = require("./nextOfKin.model");
@@ -32,7 +32,8 @@ FullMedicalRecord.init(
     visitHistory: {
       type: DataTypes.DATE,
       allowNull: false,
-      field: 'visit_history'
+      field: 'visit_history',
+      defaultValue: new Date(),
     },
     nextOfKinID: {
       type: DataTypes.INTEGER,
