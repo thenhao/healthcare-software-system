@@ -59,3 +59,17 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "healthandcompany" #Must be unique in Heroku
           heroku_email: "thlong28@gmail.com"
+          
+
+  deployGoogleCloud:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions-hub/gcloud@master
+        env:
+          PROJECT_ID: ${{secrets.GCLOUD_PROJECT_ID}}
+          APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
+        with:
+          args: app deploy app.yaml
