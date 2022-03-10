@@ -25,7 +25,7 @@ describe('test Medical Record GET request', () => {
   })
 
   test(`Test 2: It should return status 200, if Medical Record is found.`, async() => {
-    FullMedicalRecord.findAll = jest.fn().mockReturnValue({});
+    FullMedicalRecord.findAll = jest.fn().mockReturnValue([]);
     const result = await testMedRecordService.findAll();
     expect (result.status).toBe(200);
   })
@@ -59,7 +59,7 @@ describe('test Medical Record POST request', () => {
     Person.findByPk = jest.fn().mockReturnValue({});
     Clinic.findByPk = jest.fn().mockReturnValue({});
     NextOfKin.findByPk = jest.fn().mockReturnValue({});
-    FullMedicalRecord.create = jest.fn().mockReturnValue({});
+    FullMedicalRecord.create = jest.fn().mockReturnValue({save: jest.fn(()=>{})});
     const result = await testMedRecordService.createNewMedRecord(request);
     expect (result.status).toBe(200);
   })
@@ -93,7 +93,7 @@ describe('test Current Visit POST request', () => {
 
   test(`Test 3: It should return status 404, if no MC ID is found.`, async() => {
     Person.findByPk = jest.fn().mockReturnValue({});
-    CurrentVisit.findOne = jest.fn().mockReturnValue({});
+    CurrentVisit.findOne = jest.fn().mockReturnValue(null);
     MC.findByPk = jest.fn().mockReturnValue(null);
     const result = await testCurrentVisitService.createVisitRecord(request.mcID);
     expect (result.status).toBe(404);
@@ -102,7 +102,7 @@ describe('test Current Visit POST request', () => {
 
   test(`Test 4: It should return status 404, if no Clinic ID is found.`, async() => {
     Person.findByPk = jest.fn().mockReturnValue({});
-    CurrentVisit.findOne = jest.fn().mockReturnValue({});
+    CurrentVisit.findOne = jest.fn().mockReturnValue(null);
     MC.findByPk = jest.fn().mockReturnValue({});
     Clinic.findByPk = jest.fn().mockReturnValue(null);
     const result = await testMedRecordService.createVisitRecord(request.clinicID);
@@ -111,7 +111,7 @@ describe('test Current Visit POST request', () => {
 
   test(`Test 5: It should return status 404, if no Next Of Kin ID is found.`, async() => {
     Person.findByPk = jest.fn().mockReturnValue({});
-    CurrentVisit.findOne = jest.fn().mockReturnValue({});
+    CurrentVisit.findOne = jest.fn().mockReturnValue(null);
     MC.findByPk = jest.fn().mockReturnValue({});
     Clinic.findByPk = jest.fn().mockReturnValue({});
     NextOfKin.findByPk = jest.fn().mockReturnValue(null);
@@ -121,7 +121,7 @@ describe('test Current Visit POST request', () => {
 
   test(`Test 6: It should return status 200, if Medical Record has been created.`, async() => {
     Person.findByPk = jest.fn().mockReturnValue({});
-    CurrentVisit.findOne = jest.fn().mockReturnValue({});
+    CurrentVisit.findOne = jest.fn().mockReturnValue(null);
     MC.findByPk = jest.fn().mockReturnValue({});
     Clinic.findByPk = jest.fn().mockReturnValue({});
     NextOfKin.findByPk = jest.fn().mockReturnValue({});
