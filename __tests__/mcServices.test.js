@@ -15,15 +15,15 @@ afterEach(() => {
   });
 
 
-let fin='G4941042Q';
-let clinicID=1;
-let mcStartDate='2022-12-05T16:00:00.000Z';
-let mcEndDate='2022-12-07T16:00:00.000Z';
-let status='Not fit for work';
+
 
 const testdataG ={
     personid:1,
-    clinicID:1
+    clinicID:1,
+    fin:'G4941042Q',
+    mcStartDate:'2022-12-05T16:00:00.000Z',
+    mcEndDate:'2022-12-07T16:00:00.000Z',
+    status:'Not fit for work'
 }
 
 const testdataN ={
@@ -91,7 +91,7 @@ describe(`Test for create MC`, () => {
     test (`create mc test, success return 200`, async () => {
         Person.findByPk = jest.fn().mockReturnValue(testdataG.personid);
         Clinic.findByPk = jest.fn().mockReturnValue(testdataG.clinicID);
-        const result = await mcTest.createMC(fin, clinicID, mcStartDate, mcEndDate, status);
+        const result = await mcTest.createMC(testdataG.fin, testdataG.clinicID, testdataG.mcStartDate, testdataG.mcEndDate, testdataG.status);
         expect (result.status).toBe(200);
     })
 
