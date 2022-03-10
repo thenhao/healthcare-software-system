@@ -1,4 +1,4 @@
-const MedRecord = require("../../ORM/fullMedicalRecord.model");
+const FullMedicalRecord = require("../../ORM/fullMedicalRecord.model");
 const Person = require("../../ORM/person.model.js");
 
 module.exports = {
@@ -17,22 +17,122 @@ module.exports = {
         - "recordID"
         - "visitHistory"
     */
-        createNewPatient: async (data) => {
-            data.visitHistory = new Date();
+        // createNewPatient: async (data) => {
+        //     data.visitHistory = new Date();
             
-            const person = await Person.findByPk(request.FIN);
+        //     const person = await Person.findByPk(request.FIN);
 
-            if(!person){
-              result.status = 404;
-              result.message = `FIN No ${request.FIN} does not exist in the system.`
-              return result;
-            }
-            
-            try{
-                return await MedRecord.create(data);  
-            }catch(error){
-                throw error;
-            }              
-        }
+        //      try{
+        //         return await MedRecord.create(data);  
+        //     }catch(error){
+        //         throw error;
+        //     }              
+        // },
+        createNewMedRecord: async (clinicID, FIN, medicalHistory, nextOfKinID) => {
+                                 
+         //   The result object is where we will put the result to be sent to the client
+                let result = {
+                    message:null,
+                    status: null,
+                    data: null
+                }
     
+                //What we want:
+                //IF medical record and person is in db, return error message
+                //ELSE ok to proceed with create (POST)
+    
+                // const fullMedicalRecord = await FullMedicalRecord.findByPk(FIN);
+    
+                // if(!fullMedicalRecord){
+                //     result.message = `Medical Record ${recordID} is not found`;
+                //     result.status = 404;
+                //     return result;
+                // }
+    
+                // const person = await Person.findByPk(FIN);
+    
+                // if(person.FIN){
+                //     result.message = `FIN ${FIN} is found in the database. Please UPDATE instead`;
+                //     result.status = 404;
+                //     return result;
+                // }
+                
+                try{
+                const fullMedicalRecord = await FullMedicalRecord.create({
+                    clinicID : clinicID, 
+                    FIN : FIN,
+                    medicalHistory : medicalHistory, 
+                    nextOfKinID : nextOfKinID
+
+                });
+                
+                await fullMedicalRecord.save();
+                console.log('Medical Record is saved to the database');
+                result.data = fullMedicalRecord;
+                result.status = 200;
+                result.message = "Medical Record is saved to the database";
+                return result;
+    
+            } catch(error) {
+                result.message = `Error in creating Medical Record. Data not saved`;
+                result.status = 500;
+                return result;
+        }
+    },
+
+        // findMedRecordByID: async (FIN) => {
+        //     //The result object is where we will put the result to be sent to the client
+        //     let result = {
+        //         message:null,
+        //         status: null,
+        //         data: null
+        //     }
+
+        //     //What we want:
+        //     //IF medical record and person is in db, return error message
+        //     //ELSE ok to proceed with create (POST)
+
+        //     const fullMedicalRecord = await FullMedicalRecord.findByFk(FIN);
+
+        //     if(!fullMedicalRecord){
+        //         result.message = `Medical Record ${recordID} is not found`;
+        //         result.status = 404;
+        //         return result;
+        //     }
+
+        //     const person = await Person.findByPk(fullMedicalRecord.FIN);
+
+        //     if(!person){
+        //         result.message = `FIN ${fullMedicalRecord.FIN} not in database. OK to proceed`;
+        //         result.status = 404;
+        //         return result;
+        //     }
+
+        //     result.data = findMedRecordByID;
+        //     result.status = 200;
+        //     result.message = `FIN ${fullMedicalRecord.FIN} exist in database. Proceed to update instead`;
+        //     return result;
+        //     },
+
+        findAll: async()=>{
+            let result = {
+                message:null,
+                status: null,
+                data: null
+            }
+
+            const allMedRecord = await FullMedicalRecord.findAll();
+
+        if(!allMedRecord){
+            result.message = `No Medical Record found`;
+            result.status = 404;
+            return result;
+        }
+
+        result.data = allMedRecord;
+        result.status = 200;
+        result.message = `All Medical Records retrieval for successfully `;
+        return result;
+
     }
+}
