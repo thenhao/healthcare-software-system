@@ -21,13 +21,6 @@ module.exports = {
       return result;
     }
 
-    const duplicatedFIN = await CurrentVisit.findOne({where: {fin: request.fin}});
-    if(duplicatedFIN !== null){
-      result.status = 409;
-      result.message = `FIN No ${request.fin} already exists in the system.`
-      return result;
-    }
-
     const mcID = await MC.findByPk(request.mcID);
 
     if(!mcID){
