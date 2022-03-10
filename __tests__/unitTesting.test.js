@@ -1,12 +1,12 @@
-const CurrentVisit = require('./Modules/ORM/currentVisit.model');
-const FullMedicalRecord = require('./Modules/ORM/fullMedicalRecord.model');
-const Person = require('./Modules/ORM/person.model');
-const MC = require('./Modules/ORM/mc.model');
-const Clinic = require('./Modules/ORM/clinic.model');
-const NextOfKin = require('./Modules/ORM/nextOfKin.model');
+const CurrentVisit = require('../Modules/ORM/currentVisit.model');
+const FullMedicalRecord = require('../Modules/ORM/fullMedicalRecord.model');
+const Person = require('../Modules/ORM/person.model');
+const MC = require('../Modules/ORM/mc.model');
+const Clinic = require('../Modules/ORM/clinic.model');
+const NextOfKin = require('../Modules/ORM/nextOfKin.model');
 
-const testMedRecordService = require('./Modules/Services/Jeffery/medRecord.service');
-const testCurrentVisitService = require('./Modules/Services/Regina/clinicCurrentVisit.service');
+const testMedRecordService = require('../Modules/Services/Jeffery/medRecord.service');
+const testCurrentVisitService = require('../Modules/Services/Regina/clinicCurrentVisit.service');
 
 
 
