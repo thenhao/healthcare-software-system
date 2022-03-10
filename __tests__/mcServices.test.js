@@ -4,7 +4,7 @@ const MC = require("../Modules/ORM/mc.model");
 const mcTest = require("../Modules/Services/Sarah/mc.service");
 
 // (async () => {
-//      await MC.destroy({ where: {} })
+//     MC.truncate();
 //  })();
 
 
@@ -93,6 +93,7 @@ describe(`Test for create MC`, () => {
         Clinic.findByPk = jest.fn().mockReturnValue(testdataG.clinicID);
         const result = await mcTest.createMC(testdataG.fin, testdataG.clinicID, testdataG.mcStartDate, testdataG.mcEndDate, testdataG.status);
         expect (result.status).toBe(200);
+        await MC.destroy({ truncate: true, restartIdentity: true });
     })
 
 })
