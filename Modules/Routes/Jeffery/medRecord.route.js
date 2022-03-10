@@ -28,9 +28,9 @@ const medRecordController = new MedRecordController();
 }
 */
 // router.post('/createnewrecord', createNewMedRecord);
-router.post("/newrecord", medRecordController.createNewMedRecord);
+router.post("/newrecord", authClinic, medRecordController.createNewMedRecord);
 
-router.get("/findrecords", medRecordController.findAll);
+router.get("/findrecords", authClinic, medRecordController.findAll);
 
 // router.get('/findrecord/:FIN', MedRecordController.findMedRecordByID);
 
