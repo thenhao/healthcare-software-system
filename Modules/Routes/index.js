@@ -12,6 +12,13 @@ app.use(express.json());
 //app.use(generalRoutes);
 //---------------------------------------------------------------------------------------------------------
 
+//Authorization
+const register = require('../Routes/Authorization/register');
+app.use(register);
+
+const login = require('../Routes/Authorization/login');
+app.use(login);
+
 //Jeffery
 //*******************routes import**********************
 //***place here****
