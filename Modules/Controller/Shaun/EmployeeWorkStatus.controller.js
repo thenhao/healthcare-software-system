@@ -8,6 +8,7 @@ const Joi = require("joi");
 
 //For post request
 class EmployeeWorkStatuscontroller {
+
   async updateEmployeeWorkStatus(req, res) {
     const schema = Joi.object().keys({
       isWorkingToday: Joi.boolean(),
@@ -17,13 +18,7 @@ class EmployeeWorkStatuscontroller {
 
     const validation = schema.validate(req.body);
     if (validation) {
-      const result = await workerStatusUpdate.updateEmployeeWorkStatus(
-        isWorkingToday,
-
-        fin,
-
-        mcStartDate
-      );
+      const result = await workerStatusUpdate.updateEmployeeWorkStatus(req.body.isWorkingToday,req.body.fin,req.body.mcStartDate);
       res.json({
         data: result.data,
         status: result.status,

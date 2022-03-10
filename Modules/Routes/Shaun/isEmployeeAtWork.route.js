@@ -1,3 +1,5 @@
+const {authSupervisor} = require('../../Authorization/auth');
+
 //as a supervisor I want to be able to update into the employee records that the employee is at work today
 
 const express = require("express");
@@ -8,9 +10,6 @@ const EmployeeWorkStatuscontroller = require("../../Controller/Shaun/EmployeeWor
 const employeeWorkStatuscontroller = new EmployeeWorkStatuscontroller();
 
 //Invoke create in EmployeeWorkStatusController based on route
-router.put(
-  "/EmployeeWorkStatus",
-  employeeWorkStatuscontroller.updateEmployeeWorkStatus
-);
+router.put("/EmployeeWorkStatus",authSupervisor,employeeWorkStatuscontroller.updateEmployeeWorkStatus);
 
 module.exports = router;

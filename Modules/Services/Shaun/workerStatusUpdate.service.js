@@ -32,7 +32,7 @@ module.exports = {
       return result;
     }
     const mc = await MC.findAll({
-      where: { FIN: fin, mcStartDate: mcStartDate },
+      where: { FIN: fin, mcStartDate: mcStartDate }
     });
 
     if (!mc) {
@@ -56,5 +56,5 @@ module.exports = {
     result.status = 200;
     result.message = `Employee record of:${fin} successfully updated `;
     return result;
-  },
+  }
 };
