@@ -24,7 +24,7 @@ class McController {
             const result = await mcService.createMC(fin, clinicID, mcStartDate, mcEndDate, status);
             res.json({data:result.data, status: result.status, message:result.message})
         } else if (!validation) {
-            res.status(400).json({message: "Incorrect request data"})
+            res.status(400).json({message: result.message})
         }
     }
 }
