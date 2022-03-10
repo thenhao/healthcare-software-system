@@ -2,6 +2,7 @@ const express = require("express");
 const MedicalRecordModel = require("../../ORM/fullMedicalRecord.model");
 const MedRecordController = require('../../Controller/Jeffery/medRecord.controller');//Ensure same as export in other file
 const router = express.Router();
+const {authClinic} = require('../../Authorization/auth'); // this is for JWT role auth, please do not remove this!
 
 //Instantiate a new instance of the class
 

@@ -59,13 +59,6 @@ class MedRecordController{
       // //return the result from the service
       // return res.json({data:result.data, status: result.status, message:result.message});
   }
-
-
-
-
-
-
-
     async findAll(req, res){
       const result = await medRecordService.findAll();
       res.status(result.status);

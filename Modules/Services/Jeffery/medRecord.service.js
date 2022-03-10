@@ -1,5 +1,7 @@
 const FullMedicalRecord = require("../../ORM/fullMedicalRecord.model");
 const Person = require("../../ORM/person.model.js");
+const Clinic = require("../../ORM/clinic.model.js");
+const NextOfKin = require("../../ORM/nextOfKin.model.js");
 
 module.exports = {
 
@@ -49,13 +51,30 @@ module.exports = {
                 //     return result;
                 // }
     
-                // const person = await Person.findByPk(FIN);
+                const person = await Person.findByPk(FIN);
     
-                // if(person.FIN){
-                //     result.message = `FIN ${FIN} is found in the database. Please UPDATE instead`;
-                //     result.status = 404;
-                //     return result;
-                // }
+                if(!person){
+                    result.message = `FIN ${FIN} is not found in the database.`;
+                    result.status = 404;
+                    return result;
+                }
+
+                const clinic = await Clinic.findByPk(clinicID);
+    
+                if(!clinic){
+                    result.message = `Clinic ID ${clinicID} is not found in the database.`;
+                    result.status = 404;
+                    return result;
+                }
+
+                const nok = await NextOfKin.findByPk(nextOfKinID);
+    
+                if(!nok){
+                    result.message = `NOK ID ${nextOfKinID} is not found in the database.`;
+                    result.status = 404;
+                    return result;
+                }
+
                 
                 try{
                 const fullMedicalRecord = await FullMedicalRecord.create({
