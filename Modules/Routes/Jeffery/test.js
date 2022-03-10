@@ -1,1 +1,0 @@
-const {authClinic} = require('../../Authorization/auth'); // this is for JWT role auth, please do not remove this!

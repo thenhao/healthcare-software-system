@@ -32,7 +32,8 @@ FullMedicalRecord.init(
     visitHistory: {
       type: DataTypes.DATE,
       allowNull: false,
-      field: 'visit_history'
+      field: 'visit_history',
+      defaultValue: new Date(),
     },
     nextOfKinID: {
       type: DataTypes.INTEGER,
