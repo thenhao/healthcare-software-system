@@ -5,7 +5,7 @@ const Clinic = require("../../ORM/clinic.model.js");
 
 module.exports = {
     //Create function inside object
-    createResult: async(test, outcome) => {
+    createResult: async(fin, clinicID, test, outcome) => {
         
         let result = {
             message:null,
@@ -32,6 +32,8 @@ module.exports = {
         try{
             //Create test result object
             const TestResult = await createResult.create({ 
+                FIN : fin, 
+                clinicID : clinicID, 
                 test: test, 
                 outcome: outcome,
             });
