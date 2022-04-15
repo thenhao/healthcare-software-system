@@ -11,18 +11,6 @@ const NextOfKin = require("./Modules/ORM/nextOfKin.model");
 const FullMedicalRecord = require("./Modules/ORM/fullMedicalRecord.model");
 const User = require("./Modules/ORM/user.model.js");
 
-
-//Sync database
-// Person.sync();
-// Clinic.sync();
-// Company.sync();
-// EmployeeRecord.sync();
-// MC.sync();
-// CurrentVisit.sync();
-// NextOfKin.sync();
-// FullMedicalRecord.sync();
-// User.sync();
-
 app.get('/', (req, res) => {
     res.json("Test");
 })

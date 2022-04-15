@@ -1,11 +1,11 @@
-//As a Clinic Assistant, I am able to create a MC for the person by using his FIN
+//As a Clinic Assistant, I am able to create a test result for the person by using his FIN
 const Person = require("../../ORM/person.model.js");
-const MC = require("../../ORM/mc.model.js");
+const TestResult = require("../../ORM/result.model.js");
 const Clinic = require("../../ORM/clinic.model.js");
 
 module.exports = {
     //Create function inside object
-    createMC: async(fin, clinicID, mcStartDate, mcEndDate, status) => {
+    createResult: async(fin, clinicID, test, outcome) => {
         
         let result = {
             message:null,
@@ -30,28 +30,25 @@ module.exports = {
         }
     
         try{
-            //Create mc object
-            const Mc = await MC.create({ 
+            //Create test result object
+            const TestResult = await createResult.create({ 
                 FIN : fin, 
                 clinicID : clinicID, 
-                mcStartDate : mcStartDate, 
-                mcEndDate : mcEndDate, 
-                status : status
+                test: test, 
+                outcome: outcome,
             });
     
-            await Mc.save();
-            console.log('MC is saved to the database');
-            result.data = Mc;
+            await TestResult.save();
+            console.log('Test result is saved to the database');
+            result.data = result;
             result.status = 200;
-            result.message = "Mc creation successful";
+            result.message = "Test result creation successful";
             return result;
 
         } catch(error) {
-            result.message = `MC creation unsuccessful`;
+            result.message = `Test result creation unsuccessful`;
             result.status = 500;
             return result;
         }
-        
-        
     }
 }

@@ -2,48 +2,40 @@ const { DataTypes, Model} = require("sequelize");
 const {sequelize} = require('./setup');
 const Clinic = require('./clinic.model');
 const Person = require('./person.model');
-const MC = require('./create-mc.model');
-const NextOfKin = require("./nextOfKin.model");
 
-class CurrentVisit extends Model {}
+class Mc extends Model {}
 
-CurrentVisit.init(
+Mc.init(
   {
-    regNo: {
+    mcId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
-      field: 'reg_no'
+      field: 'mc_ID'
+    },
+    FIN: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     clinicID: {
       type: DataTypes.INTEGER,
       allowNull: false,
       field: 'clinic_ID'
     },
-    FIN: {
+    mcStartDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      field: 'mc_start_date'
+    },
+    mcEndDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      field: 'mc_end_date'
+    },
+    status: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    issueMC: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      field: 'issue_mc'
-    },
-    mcID: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      field: 'mc_ID'
-    },
-    nextOfKinID: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      field: 'next_of_kin_ID'
-    },
-    currentDiagnosis: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      field: 'current_diagnosis'
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -58,37 +50,23 @@ CurrentVisit.init(
   },
   {
     sequelize,
-    modelName: "CurrentVisit",
-    tableName: "CurrentVisit",
+    modelName: "MC",
+    tableName: "MC",
   }
 );
 
-CurrentVisit.belongsTo(
+Mc.belongsTo(
   Clinic,
   {
     foreignKey: 'clinicID'
   }
 );
 
-CurrentVisit.belongsTo(
+Mc.belongsTo(
   Person,
   {
     foreignKey: 'FIN'
   }
 );
 
-CurrentVisit.belongsTo(
-  MC,
-  {
-    foreignKey: 'mcID'
-  }
-);
-
-CurrentVisit.belongsTo(
-  NextOfKin,
-  {
-    foreignKey: 'nextOfKinID'
-  }
-);
-
-module.exports = CurrentVisit;
+module.exports = Mc;

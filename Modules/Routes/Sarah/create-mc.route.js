@@ -5,10 +5,10 @@ const express = require('express');
 const router = express.Router();
 
 //Import controller
-const McController = require('../../Controller/Sarah/mc.controller.js');
-const mcController = new McController();
+const CreateMcController = require('../../Controller/Sarah/create-mc.controller.js');
+const createMcController = new CreateMcController();
 
 //Invoke create in McController based on route
-router.post('/createMC', authClinic, mcController.createMC);
+router.post('/createMc', authClinic, createMcController.createMc);
 
 module.exports = router;

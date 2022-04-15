@@ -1,6 +1,6 @@
 const EmployeeRecord = require("../../ORM/empRecord.model.js");
 const Person = require("../../ORM/person.model.js");
-const MC = require("../../ORM/mc.model.js");
+const MC = require("../../ORM/create-mc.model.js");
 
 /*checks:
 -employee record find fin

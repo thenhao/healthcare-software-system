@@ -3,16 +3,16 @@ const {sequelize} = require('./setup');
 const Clinic = require('./clinic.model');
 const Person = require('./person.model');
 
-class MC extends Model {}
+class TestResult extends Model {}
 
-MC.init(
+TestResult.init(
   {
-    mcId: {
+    resultId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
-      field: 'mc_ID'
+      field: 'result_ID'
     },
     FIN: {
       type: DataTypes.STRING,
@@ -23,17 +23,11 @@ MC.init(
       allowNull: false,
       field: 'clinic_ID'
     },
-    mcStartDate: {
-      type: DataTypes.DATE,
+    result: {
+      type: DataTypes.STRING,
       allowNull: false,
-      field: 'mc_start_date'
     },
-    mcEndDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      field: 'mc_end_date'
-    },
-    status: {
+    outcome: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -55,18 +49,18 @@ MC.init(
   }
 );
 
-MC.belongsTo(
+TestResult.belongsTo(
   Clinic,
   {
     foreignKey: 'clinicID'
   }
 );
 
-MC.belongsTo(
+TestResult.belongsTo(
   Person,
   {
     foreignKey: 'FIN'
   }
 );
 
-module.exports = MC;
+module.exports = TestResult;
