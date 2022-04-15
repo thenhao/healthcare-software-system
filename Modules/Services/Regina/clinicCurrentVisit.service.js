@@ -1,6 +1,6 @@
 const CurrentVisit = require('../../ORM/currentVisit.model');
 const Clinic = require('../../ORM/clinic.model');
-const MC = require('../../ORM/mc.model');
+const MC = require('../../ORM/create-mc.model');
 const Person = require('../../ORM/person.model');
 const NextOfKin = require('../../ORM/nextOfKin.model');
 

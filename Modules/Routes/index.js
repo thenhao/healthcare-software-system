@@ -27,9 +27,13 @@ app.use(createCurrentVisit);
 
 //Sarah
 //*******************routes import**********************
-const createMC = require("../Routes/Sarah/mc.route");
+const createMc = require("../Routes/Sarah/create-mc.route");
 //*******************routes use**********************
-app.use(createMC);
+app.use(createMc);
+//*******************routes import**********************
+const createResult = require("../Routes/Sarah/create-result.route");
+//*******************routes use**********************
+app.use(createResult);
 
 //Shaun
 //*******************routes import**********************

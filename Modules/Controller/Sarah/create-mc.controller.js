@@ -1,14 +1,14 @@
 //As a Clinic Assistant, I am able to create a MC for the person by using his FIN
 
 //Import McService
-const mcService = require('../../Services/Sarah/mc.service.js');
+const CreateMcService = require('../../Services/Sarah/create-mc.service.js');
 
 //Import Joi
 const Joi = require('joi');
 
 //For post request
-class McController {
-    async createMC(req, res) {
+class CreateMcController {
+    async createMc(req, res) {
         const {fin, clinicID, mcStartDate, mcEndDate, status} = req.body;
 
         const schema = Joi.object().keys({
@@ -21,7 +21,7 @@ class McController {
 
         const validation = schema.validate(req.body);
         if (validation) {
-            const result = await mcService.createMC(fin, clinicID, mcStartDate, mcEndDate, status);
+            const result = await CreateMcService.createMc(fin, clinicID, mcStartDate, mcEndDate, status);
             res.json({data:result.data, status: result.status, message:result.message})
         } else if (!validation) {
             res.status(400).json({message: result.message})
@@ -29,4 +29,4 @@ class McController {
     }
 }
 
-module.exports = McController;
+module.exports = CreateMcController;
